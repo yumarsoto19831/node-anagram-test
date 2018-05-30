@@ -1,11 +1,13 @@
-const fs = require('fs');
-const express = require('express');
-const wordListPath = require('word-list');
+const fs = require("fs");
+const express = require("express");
+const wordListPath = require("word-list");
 
 const app = express();
-const wordList = fs.readFileSync(wordListPath, 'utf8').split('\n');
+const wordList = fs.readFileSync(wordListPath, "utf8").split("\n");
 
-app.get('/ping', (req, res) => res.send('pong'));
+app.get("/ping", (req, res) => res.send("pong"));
+
+app.get("/", (req, res) => res.send("Hello guys from SweetIQ"));
 
 /**
  * @api {get} /find Find Anagrams
@@ -26,7 +28,7 @@ app.get('/ping', (req, res) => res.send('pong'));
  *      "word3"
  *   ]
  */
-app.get('/find', (req, res) => {
+app.get("/find", (req, res) => {
   res.send([wordList[0], wordList[1]]);
 });
 
@@ -46,8 +48,8 @@ app.get('/find', (req, res) => {
  *   HTTP/1.1 200 OK
  *   false
  */
-app.get('/compare', (req, res) => {
+app.get("/compare", (req, res) => {
   res.send(false);
 });
 
-app.listen(3001, () => console.log('App listening on port 3001'));
+app.listen(3001, () => console.log("App listening on port 3001"));
