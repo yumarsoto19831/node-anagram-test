@@ -29,7 +29,7 @@ app.get("/", (req, res) => res.send("Hello guys from SweetIQ"));
  *   ]
  */
 app.get("/find", (req, res) => {
-  res.send([wordList[0], wordList[1]]);
+  res.json([wordList[0], wordList[1]]);
 });
 
 /**
@@ -49,7 +49,7 @@ app.get("/find", (req, res) => {
  *   false
  */
 app.get("/compare", (req, res) => {
-  res.send(false);
+  res.json(false);
 });
 
 app.listen(3001, () => console.log("App listening on port 3001"));
