@@ -1,5 +1,7 @@
-var router = require("express").Router();
-const anagramService = require("./anagramService");
+var router = require("express").Router(),
+  validate = require("express-validation"),
+  anagramService = require("./anagramService"),
+  inputValidation = require("./inputValidation");
 
 function findAnagrams(req, res) {
   const word = req.query.word;
@@ -32,7 +34,7 @@ function compareAnagrams(req, res) {
  *      "word3"
  *   ]
  */
-router.get("/find", findAnagrams);
+router.get("/find", validate(inputValidation.find), findAnagrams);
 
 /**
  * @api {get} /compare Compare Anagrams
