@@ -10,5 +10,7 @@ app.get("/", (req, res) => res.send("Hello guys from SweetIQ"));
 app.use(require("./src/anagram"));
 
 app.listen(3001, () => {
-  console.log("App listening on port 3001");
+  console.log("App anagram is ready");
 });
+
+module.exports = app;
