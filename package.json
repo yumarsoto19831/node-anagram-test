@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
+    "express-validation": "^1.0.2",
+    "joi": "^13.3.0",
     "word-list": "^2.0.0"
   },
   "devDependencies": {
