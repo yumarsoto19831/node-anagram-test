@@ -52,6 +52,6 @@ router.get("/find", validate(inputValidation.find), findAnagrams);
  *   HTTP/1.1 200 OK
  *   false
  */
-router.get("/compare", compareAnagrams);
+router.get("/compare", validate(inputValidation.compare), compareAnagrams);
 
 module.exports = router;
