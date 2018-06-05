@@ -1,25 +1,16 @@
 var router = require("express").Router();
+const AnagramService = require("./anagramService");
 
 function findAnagrams(req, res) {
-  wordListAnagram[sortString(req.query.word)].filter(
-    x => x != req.query.word.toLowerCase()
-  );
+  const word = req.query.word;
+  const anagrams = AnagramService.find(word);
+  res.json(anagrams);
 }
 
 function compareAnagrams(req, res) {
   const { word1, word2 } = req.query;
-  let isAnagram = false;
-  if (word1.lenght == word2.lenght) {
-    let sort1 = [...word1.toLowerCase()].sort().join("");
-    let sort2 = [...word2.toLowerCase()].sort().join("");
-    isAnagram = sort1 === sort2 ? true : false;
-  }
+  let isAnagram = AnagramService.compare(word1, word2);
   res.json(isAnagram);
-}
-
-function sortString(str) {
-  str = str.toLowerCase();
-  return [...str].sort().join("");
 }
 
 /**
