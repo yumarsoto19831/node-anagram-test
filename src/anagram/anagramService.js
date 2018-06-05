@@ -5,7 +5,8 @@ const data = anagramData.data;
 const anagramServie = {
   find: function(word) {
     word = word.toLowerCase();
-    let anagrams = data[helper.sortString(word)].filter(x => x != word);
+    let anagrams = data[helper.sortString(word)] || [];
+    anagrams = anagrams.filter(x => x != word);
     return anagrams;
   },
   compare: function(word1, word2) {
