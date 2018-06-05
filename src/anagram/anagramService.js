@@ -3,10 +3,13 @@ const anagramData = require("../model");
 const data = anagramData.data;
 
 const anagramServie = {
-  find: function(word) {
-    word = word.toLowerCase();
-    let anagrams = data[helper.sortString(word)] || [];
-    anagrams = anagrams.filter(x => x != word);
+  find: function(word = "") {
+    let anagrams = [];
+    if (word && word.length > 1) {
+      word = word.toLowerCase();
+      anagrams = data[helper.sortString(word)] || [];
+      anagrams = anagrams.filter(x => x != word);
+    }
     return anagrams;
   },
   compare: function(word1, word2) {
