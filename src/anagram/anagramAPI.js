@@ -1,15 +1,15 @@
 var router = require("express").Router();
-const AnagramService = require("./anagramService");
+const anagramService = require("./anagramService");
 
 function findAnagrams(req, res) {
   const word = req.query.word;
-  const anagrams = AnagramService.find(word);
+  const anagrams = anagramService.find(word);
   res.json(anagrams);
 }
 
 function compareAnagrams(req, res) {
   const { word1, word2 } = req.query;
-  let isAnagram = AnagramService.compare(word1, word2);
+  let isAnagram = anagramService.compare(word1, word2);
   res.json(isAnagram);
 }
 
