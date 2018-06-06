@@ -1,7 +1,7 @@
 var router = require("express").Router(),
   validate = require("express-validation"),
   anagramService = require("./anagramService"),
-  inputValidation = require("./inputValidation");
+  validation = require("../validation");
 
 function findAnagrams(req, res) {
   req.sanitizeQuery("word").trim();
@@ -40,7 +40,7 @@ function compareAnagrams(req, res) {
  *      "word3"
  *   ]
  */
-router.get("/find", validate(inputValidation.find), findAnagrams);
+router.get("/find", validate(validation.schemaValidation.find), findAnagrams);
 
 /**
  * @api {get} /compare Compare Anagrams
@@ -58,6 +58,10 @@ router.get("/find", validate(inputValidation.find), findAnagrams);
  *   HTTP/1.1 200 OK
  *   false
  */
-router.get("/compare", validate(inputValidation.compare), compareAnagrams);
+router.get(
+  "/compare",
+  validate(validation.schemaValidation.compare),
+  compareAnagrams
+);
 
 module.exports = router;

@@ -4,13 +4,15 @@ var ev = require("express-validation");
 var expressValidator = require("express-validator");
 var bodyParser = require("body-parser");
 
+const validation = require("./src/validation");
+
 app.use(bodyParser.json());
 
 var config = require("./config");
 
 const anagramData = require("./src/model");
 
-app.use(expressValidator(config.validationOptions));
+app.use(expressValidator(validation.validationOptions));
 app.use(require("./src/anagram"));
 
 app.get("/ping", (req, res) => res.send("pong"));
