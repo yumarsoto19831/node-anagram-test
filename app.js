@@ -2,18 +2,24 @@ const express = require("express");
 const app = express();
 var ev = require("express-validation");
 var expressValidator = require("express-validator");
+var bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+
+var config = require("./config");
 
 const anagramData = require("./src/model");
-anagramData.processWorldList();
+
+app.use(expressValidator(config.validationOptions));
+app.use(require("./src/anagram"));
+
 app.get("/ping", (req, res) => res.send("pong"));
 
 app.get("/", (req, res) => res.send("Hello guys from SweetIQ"));
 
-app.use(require("./src/anagram"));
-app.use(expressValidator);
-
-app.listen(3001, () => {
-  console.log("App anagram is ready");
+app.listen(3002, () => {
+  anagramData.processWorldList();
+  console.log("App anagram is ready!");
 });
 
 // error handler

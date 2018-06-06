@@ -4,15 +4,21 @@ var router = require("express").Router(),
   inputValidation = require("./inputValidation");
 
 function findAnagrams(req, res) {
+  req.sanitizeQuery("word").trim();
+  req.sanitizeQuery("word").toLowerCase();
+
   const word = req.query.word;
   const anagrams = anagramService.find(word);
   res.json(anagrams);
 }
 
 function compareAnagrams(req, res) {
+  req.sanitizeQuery(["word1", "word2"]).trim();
+  req.sanitizeQuery(["word1", "word2"]).toLowerCase();
+
   const { word1, word2 } = req.query;
   let isAnagram = anagramService.compare(word1, word2);
-  res.json(isAnagram);
+  res.send({ result: isAnagram });
 }
 
 /**
