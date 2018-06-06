@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 var ev = require("express-validation");
+var expressValidator = require("express-validator");
 
 const anagramData = require("./src/model");
 anagramData.processWorldList();
@@ -9,6 +10,7 @@ app.get("/ping", (req, res) => res.send("pong"));
 app.get("/", (req, res) => res.send("Hello guys from SweetIQ"));
 
 app.use(require("./src/anagram"));
+app.use(expressValidator);
 
 app.listen(3001, () => {
   console.log("App anagram is ready");
