@@ -19,7 +19,7 @@ app.get("/ping", (req, res) => res.send("pong"));
 
 app.get("/", (req, res) => res.send("Hello guys from SweetIQ"));
 
-app.listen(3002, () => {
+app.listen(3001, () => {
   anagramData.processWorldList();
   console.log("App anagram is ready!");
 });
